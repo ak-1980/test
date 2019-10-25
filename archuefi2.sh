@@ -91,5 +91,5 @@ systemctl enable NetworkManager
 
 echo 'Установка завершена! Перезагрузите систему.'
 echo 'Если хотите подключить AUR, установить мои конфиги XFCE4,KDE 5 тогда после перезагрзки и входа в систему, установите wget (sudo pacman -S wget) и выполните команду:'
-echo 'wget github.com/AlexeyKozma/test/blob/master/archuefi3.sh && sh archuefi3.sh'
+echo 'wget github.com/AlexeyKozma/test/raw/master/archuefi3.sh && sh archuefi3.sh'
 exit
