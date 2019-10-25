@@ -62,23 +62,9 @@ fi
 echo 'Ставим иксы и драйвера'
 pacman -S $gui_install
 
-echo "Выбор графической оболочки"
-read -p "0 - XFCE4, 1 - KDE 5 (Plasma)" gr_m
-if [[$gr_m == 0]]; then
-  pacman -S xfce4 xfce4-goodies --noconfirm
-elif [[$gr_m == 1]]; then
-  pacman -S plasma kde-applicatons --noconfirm
-fi
-
-echo "Выбор менеджера входа"
-read -p "0 - LXDM, 1 - SDDM" m_in
-if [[$m_in == 0]]; then
- pacman -S lxdm --noconfirm
- systemctl enable lxdm
-elif [[$m_in == 1]]; then
- pacman -S sddm --noconfirm
- systemctl enable sddm
-fi
+pacman -S plasma kde-applicatons --noconfirm
+pacman -S sddm --noconfirm
+systemctl enable sddm
 
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
