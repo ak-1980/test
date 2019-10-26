@@ -139,7 +139,7 @@ encryption_passphrase="$DIALOG_RESULT"
 #################
 #### Warning ####
 #################
-boot_dialog --title "WARNING" --yesno "\nYou have chosen to remove all partition(ALL DATA) on the following drives:/dev/sda.\nPress <Yes> to continue or <No> to cancel.\n" 10 60
+boot_dialog --title "WARNING" --yesno "\nYou have chosen to remove all partition(ALL DATA) on the following drives:/dev/sdb.\nPress <Yes> to continue or <No> to cancel.\n" 10 60
 clear
 if [[ $DIALOG_CODE -eq 1 ]]; then
     boot_dialog --title "Cancelled" --msgbox "\nScript was cancelled at your request." 10 60
