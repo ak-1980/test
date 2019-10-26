@@ -73,9 +73,9 @@ elif [[ $vm_setting == 3 ]]; then
 fi
 
 echo 'Cтавим DM'
-pacman -S lxdm --noconfirm
-systemctl enable lxdm
-
+pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+#systemctl enable lightdm
+lightdm.service
 
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
