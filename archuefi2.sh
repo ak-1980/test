@@ -62,8 +62,8 @@ fi
 echo 'Ставим иксы и драйвера'
 pacman -S $gui_install
 
-pacman -S plasma kde-applicatons --noconfirm
-pacman -S sddm --noconfirm
+pacman -S plasma kde-applications plasma-wayland-session
+# pacman -S sddm --noconfirm
 systemctl enable sddm
 
 echo 'Ставим шрифты'
