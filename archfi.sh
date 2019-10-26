@@ -419,7 +419,7 @@ if [[ "$fs" = "1" ]]; then
       mkfs.ext4 -L root $physical_volume
       mount $physical_volume /mnt
       mkdir /mnt/boot
-      mount /dev/sda1 /mnt/boot
+      mount /dev/sdb1 /mnt/boot
       fsck_mkinitcpio_hook=" fsck"
       root_systemd=" root=UUID=$(blkid -s UUID -o value ${physical_volume})"
 else      
