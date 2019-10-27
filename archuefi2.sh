@@ -54,9 +54,9 @@ pacman -Syy
 echo "Куда устанавливем Arch Linux на виртуальную машину?"
 read -p "1 - Да, 0 - Нет: " vm_setting
 if [[ $vm_setting == 0 ]]; then
-  gui_install="xorg-server xorg-drivers xorg-xinit"
+  pacman -S xorg-server xorg-drivers xorg-xinit
 elif [[ $vm_setting == 1 ]]; then
-  gui_install="xorg-server xorg-drivers xorg-xinit virtualbox-guest-utils"
+  pacman -S xorg-server xorg-drivers xorg-xinit virtualbox-guest-utils
 fi
 
 echo 'Ставим иксы и драйвера'
@@ -67,15 +67,24 @@ read -p "1 - XFCE, 2 - KDE, 3 - Openbox: " vm_setting
 if [[ $vm_setting == 1 ]]; then
   pacman -S xfce4 xfce4-goodies --noconfirm
 elif [[ $vm_setting == 2 ]]; then
-  pacman -Sy plasma-meta kdebase --noconfirm
+  pacman -Sy plasma-meta plasma-wayland-session kde-applications-meta --noconfirm
 elif [[ $vm_setting == 3 ]]; then  
   pacman -S  openbox xfce4-terminal
 fi
 
-echo 'Cтавим DM'
-pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-#systemctl enable lightdm
-lightdm.service
+
+
+echo 'Ставим DM'
+
+if [[ $vm_setting == 1 || $vm_setting == 3]]; then
+  pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  systemctl enable lightdm
+fi
+
+if [[ $vm_setting == 2 ]]; then
+  pacman -S sddm
+  systemctl enable sddm
+fi
 
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
