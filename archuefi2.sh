@@ -73,7 +73,9 @@ elif [[ $vm_setting == 2 ]]; then
 elif [[ $vm_setting == 3 ]]; then  
   pacman -S  openbox xfce4-terminal
 fi
-
+elif [[ $vm_setting == 4 ]]; then  
+  pacman -S  deepin  deepin-extra
+fi
 
 
 echo 'Ставим DM'
@@ -89,6 +91,11 @@ if [[ $vm_setting == 2 ]]; then
 fi
 
 if [[ $vm_setting == 3 ]]; then
+  pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  systemctl enable lightdm
+fi
+
+if [[ $vm_setting == 4 ]]; then
   pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
   systemctl enable lightdm
 fi
