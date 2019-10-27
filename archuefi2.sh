@@ -59,15 +59,14 @@ elif [[ $vm_setting == 1 ]]; then
   pacman -S xorg-server xorg-drivers xorg-xinit virtualbox-guest-utils
 fi
 
-echo 'Ставим иксы и драйвера'
-pacman -S $gui_install
-
 echo "Какое DE ставим?"
 read -p "1 - XFCE, 2 - KDE, 3 - Openbox: " vm_setting
 if [[ $vm_setting == 1 ]]; then
   pacman -S xfce4 xfce4-goodies --noconfirm
 elif [[ $vm_setting == 2 ]]; then
-  pacman -Sy plasma-meta plasma-wayland-session kde-applications-meta --noconfirm
+  pacman -Sy plasma --noconfirm
+  pacman -Sy kde-applications-meta --noconfirm
+  pacman -Sy plasma-wayland-session --noconfirm
 elif [[ $vm_setting == 3 ]]; then  
   pacman -S  openbox xfce4-terminal
 fi
@@ -82,8 +81,8 @@ if [[ $vm_setting == 1 ]]; then
 fi
 
 if [[ $vm_setting == 2 ]]; then
-  pacman -S sddm
-  systemctl enable sddm
+  #pacman -S sddm
+  #systemctl enable sddm
 fi
 
 if [[ $vm_setting == 3 ]]; then
