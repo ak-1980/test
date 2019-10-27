@@ -54,10 +54,13 @@ pacman -Syy
 echo "Куда устанавливем Arch Linux на виртуальную машину?"
 read -p "1 - Да, 0 - Нет: " vm_setting
 if [[ $vm_setting == 0 ]]; then
-  pacman -S xorg-server xorg-drivers xorg-xinit
+  pacman -S xorg-server xorg-drivers xorg-utils xorg-apps xorg-xinit
 elif [[ $vm_setting == 1 ]]; then
   pacman -S xorg-server xorg-drivers xorg-xinit virtualbox-guest-utils
 fi
+
+Xorg :0 -configure
+cp /root/xorg.conf.new /etc/X11/xorg.conf
 
 echo "Какое DE ставим?"
 read -p "1 - XFCE, 2 - KDE, 3 - Openbox: " vm_setting
@@ -81,14 +84,16 @@ if [[ $vm_setting == 1 ]]; then
 fi
 
 if [[ $vm_setting == 2 ]]; then
-  #pacman -S sddm
-  #systemctl enable sddm
+  systemctl enable sddm
+  systemctl start sddm
 fi
 
 if [[ $vm_setting == 3 ]]; then
   pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
   systemctl enable lightdm
 fi
+
+pacman -S alsa-utils alsa-plugins
 
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
