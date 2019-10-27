@@ -76,7 +76,7 @@ fi
 
 echo 'Ставим DM'
 
-if [[ $vm_setting == 1 || $vm_setting == 3]]; then
+if [[ $vm_setting == 1 ]]; then
   pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
   systemctl enable lightdm
 fi
@@ -84,6 +84,11 @@ fi
 if [[ $vm_setting == 2 ]]; then
   pacman -S sddm
   systemctl enable sddm
+fi
+
+if [[ $vm_setting == 3 ]]; then
+  pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  systemctl enable lightdm
 fi
 
 echo 'Ставим шрифты'
