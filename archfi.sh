@@ -357,7 +357,7 @@ Include = /etc/pacman.d/mirrorlist
 #[custom]
 #SigLevel = Optional TrustAll
 #Server = file:///home/custompkgs
-PACMAN
+# PACMAN
 pacman -Scc --noconfirm
 pacman -Syy --noconfirm
 pacman-key --refresh
@@ -373,37 +373,37 @@ pacman-key --populate archlinux parabola
       swapsize=$(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }')
       swapsize=$(($swapsize/1000))"M"
 if [[ $GPT -eq 1 ]]; then
-      parted /dev/sdb mklabel gpt
-      sgdisk /dev/sdb -n=1:0:+1024M -t=1:ef00 
-      sgdisk /dev/sdb -n=2:0:+$swapsize -t=2:8200
-      sgdisk /dev/sdb -n=3:0:0
+      parted /dev/sda mklabel gpt
+      sgdisk /dev/sda -n=1:0:+1024M -t=1:ef00 
+      sgdisk /dev/sda -n=2:0:+$swapsize -t=2:8200
+      sgdisk /dev/sda -n=3:0:0
 if [[ "$bl" = "1" ]]; then
       efi_bootmgr=" grub efibootmgr"
 else
       efi_bootmgr=" dosfstools gptfdisk"
 fi
 else
-      parted /dev/sdb mklabel msdos
+      parted /dev/sda mklabel msdos
       sleep 2
       echo -e "n\np\n\n\n+512M\na\nw" | fdisk /dev/sda
       sleep 2
-      echo -e "n\np\n\n\n+$swapsize\nt\n\n82\nw" | fdisk /dev/sdb
+      echo -e "n\np\n\n\n+$swapsize\nt\n\n82\nw" | fdisk /dev/sda
       sleep 2
-      echo -e "n\np\n\n\n\nw" | fdisk /dev/sdb
+      echo -e "n\np\n\n\n\nw" | fdisk /dev/sda
       sleep 2
       mbr_grub=" grub"
 fi
 if [[ $GPT -eq 1 ]]; then      
-      mkfs.vfat -F32 -n EFI /dev/sdb1 
+      mkfs.vfat -F32 -n EFI /dev/sda1 
 else      
-      mkfs.ext2 -L boot /dev/sdb1
+      mkfs.ext2 -L boot /dev/sda1
 fi      
-      mkswap -L swap /dev/sdb2
-      swapon /dev/sdb2
+      mkswap -L swap /dev/sda2
+      swapon /dev/sda2
 if [[ ! -z $encryption_passphrase ]]; then
       echo "Setting up encryption"
-      printf "%s" "$encryption_passphrase" | cryptsetup luksFormat /dev/sdb3
-      printf "%s" "$encryption_passphrase" | cryptsetup open /dev/sdb3 cryptroot
+      printf "%s" "$encryption_passphrase" | cryptsetup luksFormat /dev/sda3
+      printf "%s" "$encryption_passphrase" | cryptsetup open /dev/sda3 cryptroot
       physical_volume="/dev/mapper/cryptroot"
       encrypt_mkinitcpio_hook=" encrypt"
       sd_encrypt_mkinitcpio_hook=" sd-encrypt"
@@ -411,15 +411,15 @@ if [[ ! -z $encryption_passphrase ]]; then
       cryptdevice_grub="cryptdevice=UUID=${crypt_uuid}:cryptroot"
       cryptdevice_systemd="rd.luks.name=${crypt_uuid}=cryptroot"
 else
-      physical_volume="/dev/sdb3"
+      physical_volume="/dev/sda3"
       resume_mkinitcpio_hook=" resume"
-      resume_grub_systemd=" resume=UUID=$(blkid -s UUID -o value /dev/sdb2)"
+      resume_grub_systemd=" resume=UUID=$(blkid -s UUID -o value /dev/sda2)"
 fi
 if [[ "$fs" = "1" ]]; then      
       mkfs.ext4 -L root $physical_volume
       mount $physical_volume /mnt
       mkdir /mnt/boot
-      mount /dev/sdb1 /mnt/boot
+      mount /dev/sda1 /mnt/boot
       fsck_mkinitcpio_hook=" fsck"
       root_systemd=" root=UUID=$(blkid -s UUID -o value ${physical_volume})"
 else      
