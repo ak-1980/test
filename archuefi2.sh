@@ -63,7 +63,7 @@ Xorg :0 -configure
 cp /root/xorg.conf.new /etc/X11/xorg.conf
 
 echo "Какое DE ставим?"
-read -p "1 - XFCE, 2 - KDE, 3 - Openbox, Deepen - 4: " vm_setting
+read -p "1 - XFCE, 2 - KDE, 3 - Openbox, Deepen - 4: ,5 - GNOME " vm_setting
 if [[ $vm_setting == 1 ]]; then
   pacman -S xfce4 xfce4-goodies --noconfirm
 elif [[ $vm_setting == 2 ]]; then
@@ -74,6 +74,8 @@ elif [[ $vm_setting == 3 ]]; then
   pacman -S  openbox xfce4-terminal
 elif [[ $vm_setting == 4 ]]; then  
   pacman -S  deepin  deepin-extra 
+elif [[ $vm_setting == 5 ]]; then
+  pacman -S gnome gnome-extra
 fi
 
 
@@ -81,25 +83,34 @@ echo 'Ставим DM'
 
 if [[ $vm_setting == 1 ]]; then
   pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  systemctl start lightdm
   systemctl enable lightdm
 fi
 
 if [[ $vm_setting == 2 ]]; then
-  systemctl enable sddm
   systemctl start sddm
+  systemctl enable sddm
 fi
 
 if [[ $vm_setting == 3 ]]; then
   pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  systemctl start lightdm
   systemctl enable lightdm
 fi
 
 if [[ $vm_setting == 4 ]]; then
   pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  systemctl start lightdm
   systemctl enable lightdm
 fi
 
-pacman -S alsa-utils alsa-plugins
+if [[ $vm_setting == 5 ]]; then
+ systemctl start gdm
+ systemctl enable gdm
+ pacman -S networkmanager gnome-keyring
+fi
+
+#pacman -S alsa-utils alsa-plugins
 
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
@@ -108,6 +119,7 @@ echo 'Ставим сеть'
 pacman -S networkmanager network-manager-applet ppp --noconfirm
 
 echo 'Подключаем автозагрузку менеджера входа и интернет'
+systemctl start NetworkManager
 systemctl enable NetworkManager
 
 echo 'Установка завершена! Перезагрузите систему.'
