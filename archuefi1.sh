@@ -34,23 +34,26 @@ echo '2.4 создание разделов'
  echo y;
   
  echo w;
-) | fdisk /dev/sdb
+) | fdisk /dev/$sd_disk
 
 echo 'Ваша разметка диска'
 fdisk -l
-
+read -p "Select a disk sd.. " sd_disk
+echo "selected a disk $sd_disk.."
 echo '2.4.2 Форматирование дисков'
-
-mkfs.fat -F32 /dev/sdb1
-mkfs.ext4  /dev/sdb2
-mkfs.ext4  /dev/sdb3
+sd_1+=$sd_disk"1"
+sd_2+=$sd_disk"2"
+sd_3+=$sd_disk"3"
+mkfs.fat -F32 /dev/$sd_1
+mkfs.ext4  /dev/$sd_2
+mkfs.ext4  /dev/$sd_3
 
 echo '2.4.3 Монтирование дисков'
-mount /dev/sdb2 /mnt
+mount /dev/$sd_2 /mnt
 mkdir /mnt/home
 mkdir -p /mnt/boot/efi
-mount /dev/sdb1 /mnt/boot/efi
-mount /dev/sdb3 /mnt/home
+mount /dev/$sd_1 /mnt/boot/efi
+mount /dev/$sd_3 /mnt/home
 
 echo '3.1 Выбор зеркал для загрузки.'
 rm -rf /etc/pacman.d/mirrorlist
