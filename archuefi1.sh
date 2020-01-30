@@ -7,7 +7,9 @@ echo 'Ссылка на чек лист есть в группе vk.com/arch4u'
 
 echo '2.3 Синхронизация системных часов'
 timedatectl set-ntp true
-
+echo 'Ваша разметка диска'
+fdisk -l
+read -p "Select a disk sd.. " sd_disk
 echo '2.4 создание разделов'
 (
  echo g;
@@ -36,9 +38,7 @@ echo '2.4 создание разделов'
  echo w;
 ) | fdisk /dev/$sd_disk
 
-echo 'Ваша разметка диска'
-fdisk -l
-read -p "Select a disk sd.. " sd_disk
+
 echo "selected a disk $sd_disk.."
 echo '2.4.2 Форматирование дисков'
 sd_1+=$sd_disk"1"
