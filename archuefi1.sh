@@ -40,9 +40,9 @@ fdisk -l
 read -p "Select a disk sd.. " sd_disk
 echo "selected a disk $sd_disk.."
 echo '2.4.2 Форматирование дисков'
-sd_1+=$sd_disk"1"
-sd_2+=$sd_disk"2"
-sd_3+=$sd_disk"3"
+sd_1+=$($sd_disk + "1")
+sd_2+=$($sd_disk + "2")
+sd_3+=$($sd_disk + "3")
 mkfs.fat -F32 /dev/$sd_1
 mkfs.ext4  /dev/$sd_2
 mkfs.ext4  /dev/$sd_3
