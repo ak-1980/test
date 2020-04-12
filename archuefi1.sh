@@ -56,7 +56,7 @@ mount /dev/$sd_3 /mnt/home
 
 echo '3.1 Выбор зеркал для загрузки.'
 rm -rf /etc/pacman.d/mirrorlist
-wget https://git.io/mirrorlist
+wget https://github.com/AlexeyKozma/test/raw/master/mirrorlist
 mv -f ~/mirrorlist /etc/pacman.d/mirrorlist
 
 echo '3.2 Установка основных пакетов'
