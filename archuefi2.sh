@@ -68,7 +68,7 @@ cp /root/xorg.conf.new /etc/X11/xorg.conf
 echo "Какое DE ставим?"
 read -p "1 - XFCE, 2 - KDE, 3 - Openbox, Deepen - 4, 5 - GNOME " vm_setting
 if [[ $vm_setting == 1 ]]; then
-  pacman -S xfce4 xfce4-goodies --noconfirm
+  pacman -S xfce4 xfce4-goodies lightdm xfce4-linelight-plugin --noconfirm
 elif [[ $vm_setting == 2 ]]; then
   pacman -Sy plasma --noconfirm
   pacman -Sy kde-applications-meta --noconfirm
@@ -85,7 +85,7 @@ fi
 echo 'Ставим DM'
 
 if [[ $vm_setting == 1 ]]; then
-  pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+  #pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
   systemctl start lightdm
   systemctl enable lightdm
 fi
