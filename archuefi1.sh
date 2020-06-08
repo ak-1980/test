@@ -37,7 +37,7 @@ echo '2.4 создание разделов'
  echo y;
   
  echo w;
-) | gdisk /dev/$sd_disk
+) | fdisk /dev/$sd_disk
 
 echo '2.4.2 Форматирование дисков'
 sd_1=$sd_disk'1'
