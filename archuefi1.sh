@@ -33,7 +33,7 @@ echo '2.4 создание разделов'
  echo y;
   
  echo w;
-) | fdisk /dev/$sd_disk
+) | gdisk /dev/$sd_disk
 
 echo 'Ваша разметка диска'
 fdisk -l
