@@ -43,7 +43,7 @@ echo '2.4.2 Форматирование дисков'
 sd_1=$sd_disk'1'
 sd_2=$sd_disk'2'
 sd_3=$sd_disk'3'
-mkfs.vfat /dev/$sd_1
+mkfs.fat -F32 /dev/$sd_1
 mkfs.ext4  /dev/$sd_2
 mkfs.ext4  /dev/$sd_3
 
