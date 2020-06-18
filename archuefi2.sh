@@ -66,13 +66,13 @@ Xorg :0 -configure
 cp /root/xorg.conf.new /etc/X11/xorg.conf
 
 echo "Какое DE ставим?"
-read -p "1 - XFCE, 2 - KDE, 3 - Openbox, Deepen - 4, 5 - GNOME " vm_setting
+read -p "1 - XFCE, 2 - KDE, 3 - Openbox, Deepen - 4, GNOME - 5 " vm_setting
 if [[ $vm_setting == 1 ]]; then
   pacman -S xfce4 xfce4-goodies xfce4-session xfce4-whiskermenu-plugin sddm --noconfirm
 elif [[ $vm_setting == 2 ]]; then
-  pacman -Sy plasma --noconfirm
-  pacman -Sy kde-applications-meta --noconfirm
-  pacman -Sy plasma-wayland-session --noconfirm
+  pacman -Sy plasma plasma-wayland-session --noconfirm
+  # pacman -Sy kde-applications-meta --noconfirm
+  # pacman -Sy plasma-wayland-session --noconfirm
 elif [[ $vm_setting == 3 ]]; then  
   pacman -S  openbox xfce4-terminal
 elif [[ $vm_setting == 4 ]]; then  
