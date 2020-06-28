@@ -74,7 +74,7 @@ elif [[ $vm_setting == 2 ]]; then
   # pacman -Sy kde-applications-meta --noconfirm
   # pacman -Sy plasma-wayland-session --noconfirm
 elif [[ $vm_setting == 3 ]]; then  
-  pacman -S  i3wm i3status dmenu ttf-font-awesome alacritty feh lxappearance pcmanfm gvfs  udiskie xorg-xbacklight ristretto tumbler compton qt5ct qt5-style rxvt-unicode-patched urxvt-perls ttf-nerd-fonts-hack-complete-git
+  pacman -S  i3-gaps ttf-font-awesome alacritty feh lxappearance pcmanfm gvfs udiskie xorg-xbacklight ristretto tumbler compton qt5ct qt5-style rxvt-unicode-patched urxvt-perls ttf-nerd-fonts-hack-complete-git
 elif [[ $vm_setting == 4 ]]; then  
   pacman -S  deepin  deepin-extra 
 elif [[ $vm_setting == 5 ]]; then
@@ -115,7 +115,10 @@ if [[ $vm_setting == 5 ]]; then
  pacman -S networkmanager gnome-keyring
 fi
 
-#pacman -S alsa-utils alsa-plugins
+read -p "Install alsa 1 or 0" alsa
+if [[ $alsa = 1 ]]; then 
+	pacman -S alsa-utils alsa-plugins
+fi
 
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
