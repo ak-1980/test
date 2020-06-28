@@ -97,10 +97,10 @@ if [[ $vm_setting == 2 ]]; then
   systemctl enable sddm
 fi
 
-if [[ $vm_setting == 3 ]]; then
-  pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-  systemctl start lightdm
-  systemctl enable lightdm
+if [[ $vm_setting == 3 ]]; then	
+  pacman -S sddm
+  systemctl start sddm
+  systemctl enable sddm
 fi
 
 if [[ $vm_setting == 4 ]]; then
