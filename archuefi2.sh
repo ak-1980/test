@@ -74,7 +74,7 @@ elif [[ $vm_setting == 2 ]]; then
   # pacman -Sy kde-applications-meta --noconfirm
   # pacman -Sy plasma-wayland-session --noconfirm
 elif [[ $vm_setting == 3 ]]; then  
-  pacman -S i3-gaps ttf-font-awesome alacritty kitty feh lxappearance pcmanfm gvfs udiskie xorg-xbacklight ristretto tumbler compton qt5ct qt5-style rxvt-unicode-patched urxvt-perls ttf-nerd-fonts-hack-complete-git
+  pacman -S i3-gaps polybar ttf-font-awesome alacritty kitty feh lxappearance pcmanfm gvfs udiskie xorg-xbacklight ristretto tumbler compton qt5ct qt5-style rxvt-unicode-patched urxvt-perls ttf-nerd-fonts-hack-complete-git
   echo 'exec i3' >> /home/$username/.xinitrc
   mkdir  /home/$username/.i3/
   echo 'exec i3 -V' >> /home/$username/.i3/i3log 2>&1
