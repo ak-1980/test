@@ -122,7 +122,7 @@ if [[ $vm_setting == 5 ]]; then
  pacman -S networkmanager gnome-keyring
 fi
 
-read -p "Install alsa 1 or 0" alsa
+read -p "Install alsa 1 or 0: " alsa
 if [[ $alsa = 1 ]]; then 
 	pacman -S alsa-utils alsa-plugins
 fi
