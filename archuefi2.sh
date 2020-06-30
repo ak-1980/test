@@ -66,7 +66,7 @@ Xorg :0 -configure
 cp /root/xorg.conf.new /etc/X11/xorg.conf
 
 echo "Какое DE ставим?"
-read -p "XFCE - 1, KDE - 2, i3-wm - 3 , Deepen - 4, GNOME - 5 " vm_setting
+read -p "XFCE - 1, KDE - 2, i3-wm - 3 , Deepen - 4, GNOME - 5, or No de - 0" vm_setting
 if [[ $vm_setting == 1 ]]; then
   pacman -S xfce4 xfce4-goodies xfce4-session xfce4-whiskermenu-plugin sddm --noconfirm
 elif [[ $vm_setting == 2 ]]; then
@@ -91,7 +91,7 @@ fi
 
 echo 'Ставим DM'
 
-if [[ $vm_setting == 1 ]]; then
+if [[ $vm_setting == 1 ]] || [[ $vm_setting == 0 ]]; then
   #pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
   #systemctl start lightdm
   #systemctl enable lightdm
