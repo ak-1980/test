@@ -156,6 +156,9 @@ function configuration_os()
 
 function menu_install()
 {
+    loadkeys ru
+    setfont cyr-sun16
+    timedatectl set-ntp true
     local result
     # Этапы установки 
     # Вывод инвормации 
