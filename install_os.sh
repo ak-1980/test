@@ -9,7 +9,7 @@ function diskor()
     Или введит 'q' для выхода: " disk_name
     if [[ $disk_name == 'q' ]]; then
         return 0
-    read -p "Выбран диск $disk_name подтвердить" disk_on
+    read -p "Выбран диск $disk_name подтвердить 'y'  или  'yes'" disk_on
     elif [[ $disk_on == 'y' ]] || [[ $disk_on == 'yes' ]]; then 
 
 
@@ -165,8 +165,7 @@ function menu_install()
     while [[ true ]]
     do
     clear
-    printf "############# \n# 1) разметка жесткого диска\n# 2) Выбор зекал\n# 3) Установка основных пакетов \n
-    # 4) Базовые настройки # 5) Выход \n############# Ввод:"
+    printf "############# \n# 1) разметка жесткого диска\n# 2) Выбор зекал\n# 3) Установка основных пакетов \n# 4) Базовые настройки # 5) Выход. \n############# Ввод:"
     read -p "  " exit_e
         case $exit_e in 
         1) diskor ;;
