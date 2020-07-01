@@ -72,6 +72,24 @@ function mirrors()
     return 0
 }
 
+function install_base()
+{   
+    count=1
+    while [ $count -lt 5 ]; do
+        pacstrap /mnt base base-devel btrfs-progs dmidecode dosfstools e2fsprogs efibootmgr exfat-utils 
+        f2fs-tools fakeroot findutils gptfdisk grep grub haveged hdparm intel-ucode ipw2100-fw 
+        ipw2200-fw less linux linux-atm linux-firmware linux-headers lsb-release lvm2 memtest86+ 
+        ntfs-3g os-prober refind-efi reiserfsprogs rsync shadow smartmontools syslinux  
+        systemd-sysvcompat tar tlp upower usb_modeswitch usbutils util-linux wget wireless_tools 
+        wireless-regdb wvdial x264 xfsprogs
+        if [[ $? ]]; then
+            genfstab -pU /mnt >> /mnt/etc/fstab
+            return 0
+        fi
+        let $count+=1 
+    done
+}
+
 # menu 1) Информация облочных устройствых (Дисках)
 
 
@@ -82,12 +100,15 @@ function menu_install()
     # Вывод инвормации 
     while [[ true ]]
     do
-    printf "'#'*20 \n# 1) разметка жесткого диска \n #2) Выбор зекал  \n#3) Выход 'q'\n"
+    printf "############# \n# 1) разметка жесткого диска\n# 2) Выбор зекал\n# 3) Установка основных пакетов \n# 
+    4) Выход \n############# Ввод: "
     read -p "  " exit_e
         case $exit_e in 
         1) diskor ;;
         2) mirrors ;;
-        3) break ;;
+        3) install_base ;;
+        4) ;;
+        5) break ;;
         esac
     done
 } 
