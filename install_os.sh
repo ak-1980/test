@@ -2,7 +2,7 @@
 
 function diskor()
 {
-    while [[ tree ]]; do
+    while [[ true ]]; do
     lsblk
     read -p "Введите имя диска, куда булет установлен Archlinux.
     Пример sda, sdb ...
@@ -73,29 +73,23 @@ function mirrors()
 }
 
 # menu 1) Информация облочных устройствых (Дисках)
+
+
 function menu_install()
 {
     local result
     # Этапы установки 
     # Вывод инвормации 
-    while [[ tree ]]
+    while [[ true ]]
     do
-    read -p " 1) разметка жесткого диска 2) Выбор зекал  5) Выход 'q' " exit_e
-    elif [[ $exit_e == 'q' ]]
-    then
-        return 0
-    if [[ $exit_e == 1 ]]
-    then
-        if [[ diskor -gt 0 ]]; then
-            echo "Ошибка функции 'diskor'"
-        else return 0    
-        fi
-    # exit
-    fi
-    
+    printf "'#'*20 \n# 1) разметка жесткого диска \n #2) Выбор зекал  \n#3) Выход 'q'\n"
+    read -p "  " exit_e
+        case $exit_e in 
+        1) diskor ;;
+        2) mirrors ;;
+        3) break ;;
+        esac
     done
-
-    return 1
 } 
 
 
