@@ -9,8 +9,9 @@ function diskor()
     Или введит 'q' для выхода: " disk_name
     if [[ $disk_name == 'q' ]]; then
         return 0
-    read -p "Выбран диск $disk_name подтвердить 'y'  или  'yes'" disk_on
-    elif [[ $disk_on == 'y' ]] || [[ $disk_on == 'yes' ]]; then 
+    echo "Выбран диск $disk_name"
+    read -p "подтвердить 'y'  или  'yes'" disk_on
+    if [[ $disk_on == 'y' ]] || [[ $disk_on == 'yes' ]]; then 
 
 
         echo 'создание разделов'
