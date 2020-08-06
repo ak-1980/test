@@ -67,8 +67,8 @@ function mirrors()
 {
     echo 'Выбор зеркал для загрузки.'
     rm -rf /etc/pacman.d/mirrorlist &&
-    git clone https://raw.githubusercontent.com/AlexeyKozma/test/master/mirrorlist && 
-    mv -f ~/mirrorlist /etc/pacman.d/mirrorlist &&
+    curl https://raw.githubusercontent.com/AlexeyKozma/test/master/mirrorlist >> mirrorlist && 
+    mv -f ~/mirrorlist /etc/pacman.d/mirrorlist 
     return 0
 }
 
