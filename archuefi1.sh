@@ -18,7 +18,7 @@ echo '2.4 создание разделов'
  echo n;
  echo;
  echo;
- echo +520M;
+ echo +512M;
  echo y;
  echo t;
  echo 1;
@@ -56,8 +56,7 @@ mount /dev/$sd_3 /mnt/home
 
 echo '3.1 Выбор зеркал для загрузки.'
 rm -rf /etc/pacman.d/mirrorlist
-wget https://github.com/AlexeyKozma/test/raw/master/mirrorlist
-mv -f ~/mirrorlist /etc/pacman.d/mirrorlist
+curl https://raw.githubusercontent.com/AlexeyKozma/test/master/mirrorlist >> /etc/pacman.d/mirrorlist
 
 echo '3.2 Установка основных пакетов'
 pacstrap /mnt base base-devel linux linux-firmware nano dhcpcd netctl
