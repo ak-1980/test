@@ -60,9 +60,9 @@ function diskor()
         return 0
     
     fi
-    done
+  done
 
-   return 1
+ return 1
 }
 
 function mirrors()
