@@ -112,8 +112,8 @@ fi
 
 if [[ $vm_setting == 4 ]]; then
   # pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-  systemctl start lightdm
-  systemctl enable lightdm
+  # systemctl start lightdm
+  # systemctl enable lightdm
 fi
 
 if [[ $vm_setting == 5 ]]; then
