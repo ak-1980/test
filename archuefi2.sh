@@ -122,16 +122,17 @@ if [[ $vm_setting == 5 ]]; then
  pacman -S networkmanager gnome-keyring
 fi
 read -p "Installing dirctory of user  = 1 or 0 : " in_d_u
-if [[ $in_d_u = 1]]; then
+if [[ $in_d_u == 1 ]]; then
 	pacman -S xdg-user-dirs --noconfirm
 	xdg-user-dirs-update
 fi
 read -p "installing programs = 1 or 0: " in_p
+if [[ $in_p == 1 ]]; then
 	echo 'Установка программ'
    pacman -S gcc gdb make cmake git wget curl recoll obs-studio doublecmd-gtk2 veracrypt vlc freemind filezilla gimp libreoffice libreoffice-fresh-ru kdenlive audacity screenfetch qbittorrent galculator chromium ufw f2fs-tools dosfstools ntfs-3g alsa-lib alsa-utils file-roller p7zip unrar gvfs aspell-ru pulseaudio pavucontrol --noconfirm
 fi
 read -p "Install alsa 1 or 0: " alsa
-if [[ $alsa = 1 ]]; then 
+if [[ $alsa == 1 ]]; then 
 	pacman -S alsa-utils alsa-plugins
 fi
 
