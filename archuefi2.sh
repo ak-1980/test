@@ -137,9 +137,10 @@ if [[ $alsa == 1 ]]; then
 fi
 
 echo 'Установка AUR (yay)'
-pacman -Syu
-wget git.io/yay-install.sh && sh yay-install.sh --noconfirm
-yay -S  yay -S cherrytree pamac-aur-git  --noconfirm 
+pacman -S --needed git base-devel --noconfirm
+git clone https://aur.archlinux.org/yay.git
+cd yay && makepkg -si && cd .. && yay -S cherrytree pamac-aur-git  --noconfirm 
+
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
 
