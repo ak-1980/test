@@ -83,7 +83,7 @@ elif [[ $vm_setting == 3 ]]; then
   mkdir  /home/$username/.i3/
   echo 'exec i3 -V' >> /home/$username/.i3/i3log 2>&1
 elif [[ $vm_setting == 4 ]]; then  
-  pacman -S  deepin  deepin-extra startdde
+  pacman -S  deepin  deepin-extra 
 elif [[ $vm_setting == 5 ]]; then
   pacman -S gnome gnome-extra
 fi
@@ -112,10 +112,8 @@ fi
 
 if [[ $vm_setting == 4 ]]; then
   # pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-  # systemctl start lightdm
-  # systemctl enable lightdm
-  # systemctl enable lightdm.service
-  startdde
+  systemctl start lightdm
+  systemctl enable lightdm
 fi
 
 if [[ $vm_setting == 5 ]]; then
@@ -123,12 +121,24 @@ if [[ $vm_setting == 5 ]]; then
  systemctl enable gdm
  pacman -S networkmanager gnome-keyring
 fi
-
+read -p "Installing dirctory of user  = 1 or 0 : " in_d_u
+if [[ $in_d_u = 1]]; then
+	pacman -S xdg-user-dirs --noconfirm
+	xdg-user-dirs-update
+fi
+read -p "installing programs = 1 or 0: " in_p
+	echo 'Установка программ'
+   pacman -S gcc gdb make cmake git wget curl recoll obs-studio doublecmd-gtk2 veracrypt vlc freemind filezilla gimp libreoffice libreoffice-fresh-ru kdenlive audacity screenfetch qbittorrent galculator chromium ufw f2fs-tools dosfstools ntfs-3g alsa-lib alsa-utils file-roller p7zip unrar gvfs aspell-ru pulseaudio pavucontrol --noconfirm
+fi
 read -p "Install alsa 1 or 0: " alsa
 if [[ $alsa = 1 ]]; then 
 	pacman -S alsa-utils alsa-plugins
 fi
 
+echo 'Установка AUR (yay)'
+pacman -Syu
+wget git.io/yay-install.sh && sh yay-install.sh --noconfirm
+yay -S  yay -S cherrytree pamac-aur-git  --noconfirm 
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
 
@@ -138,7 +148,6 @@ pacman -S networkmanager network-manager-applet ppp --noconfirm
 echo 'Подключаем автозагрузку менеджера входа и интернет'
 systemctl start NetworkManager
 systemctl enable NetworkManager
-
 echo 'Установка завершена! Перезагрузите систему.'
 echo 'Если хотите подключить AUR, установить мои конфиги XFCE4,KDE 5 тогда после перезагрзки и входа в систему, установите wget (sudo pacman -S wget) и выполните команду:'
 echo 'wget github.com/AlexeyKozma/test/raw/master/archuefi3.sh && sh archuefi3.sh'
