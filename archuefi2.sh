@@ -83,7 +83,7 @@ elif [[ $vm_setting == 3 ]]; then
   mkdir  /home/$username/.i3/
   echo 'exec i3 -V' >> /home/$username/.i3/i3log 2>&1
 elif [[ $vm_setting == 4 ]]; then  
-  pacman -S  deepin  deepin-extra 
+  pacman -S  deepin deepin-extra 
 elif [[ $vm_setting == 5 ]]; then
   pacman -S gnome gnome-extra
 fi
@@ -112,7 +112,7 @@ fi
 
 if [[ $vm_setting == 4 ]]; then
   # pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-  systemctl start lightdm
+  # systemctl start lightdm
   systemctl enable lightdm
 fi
 
