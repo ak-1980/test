@@ -70,7 +70,7 @@ read -p "XFCE - 1, KDE - 2, i3-wm - 3 , Deepen - 4, GNOME - 5, or No de - 0" vm_
 if [[ $vm_setting == 1 ]]; then
   pacman -S xfce4 xfce4-goodies xfce4-session xfce4-whiskermenu-plugin sddm --noconfirm
 elif [[ $vm_setting == 2 ]]; then
-  pacman -Sy plasma plasma-wayland-session --noconfirm
+  pacman -Sy plasma plasma-wayland-session kde-applications-meta --noconfirm
   # pacman -Sy kde-applications-meta --noconfirm
   # pacman -Sy plasma-wayland-session --noconfirm
 elif [[ $vm_setting == 3 ]]; then 
