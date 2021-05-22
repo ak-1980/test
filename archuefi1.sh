@@ -13,8 +13,8 @@ echo "selected a disk $sd_disk.."
 
 echo '2.4 создание разделов'
 (
- echo g;
-
+ #echo g;
+ echo o;
  echo n;
  echo;
  echo;
