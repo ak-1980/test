@@ -18,7 +18,7 @@ echo '2.4 создание разделов'
  echo n;
  echo;
  echo;
- echo +512M;
+ echo -17G;
  echo y;
  echo t;
  echo 1;
@@ -43,15 +43,15 @@ echo '2.4.2 Форматирование дисков'
 sd_1=$sd_disk'1'
 sd_2=$sd_disk'2'
 sd_3=$sd_disk'3'
-mkfs.fat -F32 /dev/$sd_1
+mkswap /dev/$sd_1
 mkfs.ext4  /dev/$sd_2
 mkfs.ext4  /dev/$sd_3
 
 echo '2.4.3 Монтирование дисков'
 mount /dev/$sd_2 /mnt
 mkdir /mnt/home
-mkdir -p /mnt/boot/efi
-mount /dev/$sd_1 /mnt/boot/efi
+#mkdir -p /mnt/boot/efi
+swapon /dev/$sd_1 #/mnt/boot/efi
 mount /dev/$sd_3 /mnt/home
 
 echo '3.1 Выбор зеркал для загрузки.'
