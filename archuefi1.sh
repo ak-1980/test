@@ -11,26 +11,6 @@ fdisk -l
 read -p "Select a disk sd.. " sd_disk
 echo "selected a disk $sd_disk.."
 
-echo '2.4 создание разделов'
-(
- #echo g;
- echo o;
-
- echo n;
- echo;
- echo;
- echo +30G;
- echo y;
- 
-  
- echo n;
- echo;
- echo;
- echo;
- echo y;
-  
- echo w;
-) | fdisk /dev/$sd_disk
 
 echo '2.4.2 Форматирование дисков'
 sd_1=$sd_disk'1'
