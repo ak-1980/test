@@ -31,10 +31,9 @@ pacman -Syy
 pacman -S grub efibootmgr dosfstools os-prober #grub efibootmgr --noconfirm 
 #grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --force
 #grub-install /dev/$sd_disk
-grub-install --target=i386-pc /dev/$sd_disk
 echo 'Обновляем grub.cfg'
+grub-install --recheck --target=i386-pc /dev/$sd_disk
 grub-mkconfig -o /boot/grub/grub.cfg
-
 echo 'Ставим программу для Wi-fi'
 pacman -S dialog wpa_supplicant --noconfirm 
 
