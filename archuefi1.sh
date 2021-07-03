@@ -14,15 +14,15 @@ echo "selected a disk $sd_disk.."
 
 echo '2.4.2 Форматирование дисков'
 sd_1=$sd_disk'1'
-sd_2=$sd_disk'2'
+#sd_2=$sd_disk'2'
 mkfs.ext4  /dev/$sd_1
-mkfs.ext4  /dev/$sd_2
+#mkfs.ext4  /dev/$sd_2
 
 echo '2.4.3 Монтирование дисков'
 mkdir /mnt
 mount /dev/$sd_1 /mnt
-mkdir /mnt/home
-mount /dev/$sd_2 /mnt/home
+#mkdir /mnt/home
+#mount /dev/$sd_2 /mnt/home
 
 echo '3.1 Выбор зеркал для загрузки.'
 rm -rf /etc/pacman.d/mirrorlist
